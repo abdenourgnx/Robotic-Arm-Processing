@@ -1,0 +1,110 @@
+import processing.video.*;
+import java.math.*;
+
+
+Capture video ;
+  
+Calc cl = new Calc();
+
+String[] devices;
+
+float circleX;
+float circleY;
+float rangeIn;
+
+final int s1 = Mesurment.FIRST;
+final int s2 = Mesurment.SECOND;
+final int realRange = Mesurment.RANGE ;
+
+PVector mainVector = new PVector(50,50);
+
+
+color trackColor; 
+float threshold = 25;
+float distThreshold = 50;
+
+ArrayList<Blob> blobs = new ArrayList<Blob>();
+
+
+void setup(){
+  
+  size(640 , 480);
+  
+  devices= Capture.list();
+  
+  circleX= width/2;
+  circleY= height;
+  rangeIn = width/2;
+  
+  video = new Capture(this,640, 480,devices[0]);
+  video.start();
+  
+  imageMode(CENTER);
+  
+  trackColor = color(47, 187, 97);
+}
+
+
+void draw(){
+  background(0);
+  noFill();
+  
+  
+  image(video, width/2,height/2);
+   
+  detect(trackColor , blobs);
+   
+  drawCircle();
+
+  float distance = dist(mouseX ,mouseY ,circleX , circleY);
+  
+  if(distance < rangeIn){
+    
+    mainVector.set(mouseX-circleX, -mouseY+circleY);
+    float mapped = map(distance,0,rangeIn,0,realRange);
+    move2axis(mapped,5);
+    print(mapped , "+++" );
+    
+  }
+  
+  textAlign(RIGHT);
+  fill(0);
+  text("distance threshold: " + distThreshold, width-10, 25);
+  text("color threshold: " + threshold, width-10, 50);
+  
+}
+
+
+void captureEvent(Capture video){
+  video.read();
+}
+
+
+void mousePressed() {
+  int loc = mouseX + mouseY*video.width;
+  trackColor = video.pixels[loc];
+  
+  for(Blob b : blobs){
+    if(dist(mouseX,mouseY,b.getX(), b.getY())< 20){
+      println(b.getX(), "+++" , b.getY()) ;
+    }
+  }
+ 
+  
+}
+
+void keyPressed() {
+  if (key == 'a') {
+    distThreshold+=5;
+  } else if (key == 'z') {
+    distThreshold-=5;
+  }
+  if (key == 's') {
+    threshold+=5;
+  } else if (key == 'q') {
+    threshold-=5;
+  }
+
+
+  println(distThreshold);
+}
