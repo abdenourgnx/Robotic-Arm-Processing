@@ -1,7 +1,7 @@
 # Robotic-Arm-Processing
 Robotic arm with different approches 
 
-<img src="Screenshot_3.jpg" width=300>
+<img src="Screenshot_3.jpg" width=500>
 
 **Things you gonna need :**
 - Robotic arm with 3 axis and a gripe 
