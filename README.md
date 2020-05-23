@@ -8,7 +8,7 @@ Things you gonna need :
 
 
 
-Calcuations and mappings :
+### Calcuations and mappings :
 
 1- All the drawing is using processing java language 
 2- Translating angels ( alpha1 , alpha2 and alpha3 ) to Polar (XYZ) cordinate is done by inverse kinematics 
@@ -19,7 +19,7 @@ Calcuations and mappings :
 
 
 
-Programmes working : 
+### Programmes working : 
 
 1-The first methode using Color detection  ,the programe will detect the object colors and thier container colors based on the selected RGB set when pressing the key (space) the programe will store the cordinates in an array and than move each object to its container 
  
