@@ -1,7 +1,9 @@
 # Robotic-Arm-Processing
 Robotic arm with different approches 
 
-Things you gonna need : 
+<img src="Screenshot_3.jpg" width=300>
+
+**Things you gonna need :**
 - Robotic arm with 3 axis and a gripe 
 - Arduino 
 - Processing IDE
